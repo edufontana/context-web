@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useReducer } from 'react'
 
 interface IContextProps {
   children: React.ReactNode
