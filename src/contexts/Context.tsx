@@ -1,21 +1,37 @@
 import React, { createContext, useReducer } from 'react'
+import {
+  UserType,
+  userInitialState,
+  userReducer,
+} from '../reducers/userReducer'
+import { reducerActionType } from '../types/reducerActionType'
 
-interface IContextProps {
-  children: React.ReactNode
+interface InitialState {
+  user: UserType
 }
 
 interface ContextType {
-  name: string
-  age: number
+  state: InitialState
+  dispatch: React.Dispatch<any>
 }
 
-const inititalState = {
-  name: 'edu',
-  age: 27,
+const initialState = {
+  user: userInitialState,
 }
 
-export const Context = createContext<ContextType>(inititalState)
+export const Context = createContext<ContextType>({
+  state: initialState,
+  dispatch: () => null,
+})
 
-export function ContextProvider({ children }: IContextProps) {
-  return <Context.Provider value={inititalState}>{children}</Context.Provider>
+const mainReducer = (state: InitialState, action: reducerActionType) => ({
+  user: userReducer(state.user, action),
+})
+
+export const ContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(mainReducer, initialState)
+
+  return (
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+  )
 }

@@ -17,6 +17,7 @@ export const userReducer = (
   switch (action.type) {
     case 'CHANGE_NAME':
       return { ...state, name: action.payload.name }
+
     case 'CHANGE_AGE':
       return { ...state, name: action.payload.age }
   }
