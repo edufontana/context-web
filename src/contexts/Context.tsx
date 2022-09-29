@@ -4,10 +4,16 @@ import {
   userInitialState,
   userReducer,
 } from '../reducers/userReducer'
+import {
+  ThemeProps,
+  ThemeReducer,
+  themeInitialState,
+} from '../reducers/themeReducer'
 import { reducerActionType } from '../types/reducerActionType'
 
 interface InitialState {
   user: UserType
+  theme: ThemeProps
 }
 
 interface ContextType {
@@ -17,6 +23,7 @@ interface ContextType {
 
 const initialState = {
   user: userInitialState,
+  theme: themeInitialState,
 }
 
 export const Context = createContext<ContextType>({
@@ -26,6 +33,7 @@ export const Context = createContext<ContextType>({
 
 const mainReducer = (state: InitialState, action: reducerActionType) => ({
   user: userReducer(state.user, action),
+  theme: ThemeReducer(state.theme, action),
 })
 
 export const ContextProvider = ({ children }) => {
