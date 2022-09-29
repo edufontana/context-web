@@ -1,14 +1,15 @@
 export interface ThemeProps {
-  theme: 'dark' | 'light'
+  status: string
 }
 
 export const themeInitialState: ThemeProps = {
-  theme: 'dark',
+  status: 'white',
 }
 
 export function ThemeReducer(state = themeInitialState, action: any) {
   switch (action.type) {
     case 'CHANGE_STATUS':
-      return { ...state, theme: action.payload.status }
+      console.log(action.payload.status)
+      return { ...state, status: action.payload.status }
   }
 }
