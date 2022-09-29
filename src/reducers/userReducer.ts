@@ -6,8 +6,8 @@ export interface UserType {
 }
 
 export const userInitialState: UserType = {
-  name: 'edu',
-  age: 27,
+  name: '',
+  age: 0,
 }
 
 export const userReducer = (
@@ -19,7 +19,7 @@ export const userReducer = (
       return { ...state, name: action.payload.name }
 
     case 'CHANGE_AGE':
-      return { ...state, name: action.payload.age }
+      return { ...state, age: action.payload.age }
   }
 
   return state
